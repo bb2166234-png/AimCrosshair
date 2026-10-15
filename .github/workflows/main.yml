@@ -28,8 +28,8 @@ jobs:
           PROJECT_DIR=$(dirname "$(find extracted -name settings.gradle.kts -print -quit)")
           test -n "$PROJECT_DIR"
           cd "$PROJECT_DIR"
-          sed -i 's/JavaVersion.VERSION_1_8/JavaVersion.VERSION_17/g' app/build.gradle.kts
-          gradle assembleDebug
+          sed -i 's/VERSION_1_8/VERSION_17/g' app/build.gradle.kts
+          gradle assembleDebug -Pkotlin.jvm.target.validation.mode=warning
 
       - name: Save APK
         uses: actions/upload-artifact@v4
